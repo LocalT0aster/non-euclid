@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://iicjh8sgmtb1"]
+
+[ext_resource type="Script" uid="uid://c2y54tmuh1uly" path="res://entity/PlayerController.cs" id="1_mckvm"]
+[ext_resource type="Texture2D" uid="uid://dfs2dkjvj4fvh" path="res://icon.svg" id="2_v200u"]
+[ext_resource type="Texture2D" uid="uid://g1f56nhl66yn" path="res://img/knife.png" id="3_xuay3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_owprq"]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_koprp"]
+
+[sub_resource type="Gradient" id="Gradient_mckvm"]
+offsets = PackedFloat32Array(0.7425926, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_koprp"]
+gradient = SubResource("Gradient_mckvm")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knife"]
+size = Vector2(30, 10)
+
+[node name="Player" type="CharacterBody2D" unique_id=181462379 groups=["player"]]
+texture_filter = 1
+script = ExtResource("1_mckvm")
+HealthBarPath = NodePath("HUD/ProgressBar")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1182929756]
+material = SubResource("CanvasItemMaterial_owprq")
+position = Vector2(-5.9604645e-08, 5.9604645e-07)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("2_v200u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236701069]
+shape = SubResource("RectangleShape2D_koprp")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=864260693]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1487457781]
+scale = Vector2(3.5740628, 3.6299074)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_koprp")
+height = 32.0
+
+[node name="KnifePivot" type="Node2D" parent="." unique_id=1603175837]
+z_index = 2
+
+[node name="KnifeBlade" type="Node2D" parent="KnifePivot" unique_id=842887808]
+position = Vector2(16, 0)
+
+[node name="Knife" type="Sprite2D" parent="KnifePivot/KnifeBlade" unique_id=315215184]
+texture_filter = 1
+texture_repeat = 1
+rotation = 0.7853982
+texture = ExtResource("3_xuay3")
+
+[node name="KnifeHitbox" type="Area2D" parent="KnifePivot/KnifeBlade" unique_id=968252542]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KnifePivot/KnifeBlade/KnifeHitbox" unique_id=1493331692]
+shape = SubResource("RectangleShape2D_knife")
+
+[node name="KnifeCooldown" type="Timer" parent="." unique_id=370920229]
+wait_time = 0.25
+one_shot = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1696880541]
+layer = 10
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD" unique_id=692070910]
+offset_left = 10.0
+offset_top = 16.0
+offset_right = 82.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 8
+value = 100.0

@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://entity/Heart.cs" id="1_heart"]
+[ext_resource type="Texture2D" uid="uid://cb2p6m035l8np" path="res://img/heart.png" id="2_texture"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_heart"]
+radius = 10.0
+
+[node name="Heart" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_heart")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_texture")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_heart")

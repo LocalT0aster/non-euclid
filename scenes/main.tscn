@@ -1,8 +1,13 @@
 [gd_scene format=4 uid="uid://bw38sg7e1mww5"]
 
-[ext_resource type="PackedScene" uid="uid://iicjh8sgmtb1" path="res://entity/entity.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://iicjh8sgmtb1" path="res://entity/Player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://meblgsa3ppfk" path="res://img/walls.png" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://1e3kiox6kamv" path="res://img/walls_norm.png" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://bbyvolrr1hcyo" path="res://runtime/DungeonPrototype.cs" id="4_proto"]
+[ext_resource type="Script" uid="uid://h4iijj6p5sc0" path="res://runtime/AIDirector.cs" id="5_director"]
+[ext_resource type="PackedScene" uid="uid://jflsobmffwwf" path="res://entity/Enemy.tscn" id="6_enemy"]
+[ext_resource type="PackedScene" path="res://entity/Heart.tscn" id="7_heart"]
+[ext_resource type="PackedScene" path="res://entity/Exit.tscn" id="8_exit"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sugp2"]
 light_mode = 2
@@ -593,14 +598,26 @@ terrain_set_0/terrain_1/color = Color(0.5019608, 0.76862746, 0.2509804, 1)
 sources/0 = SubResource("TileSetAtlasSource_sugp2")
 
 [node name="Main" type="Node2D" unique_id=974984888]
+script = ExtResource("4_proto")
 
-[node name="Entity" parent="." unique_id=181462379 instance=ExtResource("1_o5qli")]
+[node name="AIDirector" type="Node" parent="." unique_id=1379533795]
+script = ExtResource("5_director")
+EnemyScene = ExtResource("6_enemy")
+HeartScene = ExtResource("7_heart")
+ExitScene = ExtResource("8_exit")
+
+[node name="Player" parent="." unique_id=181462379 instance=ExtResource("1_o5qli")]
 light_mask = 2
 visibility_layer = 2
 z_index = 1
 position = Vector2(0, 41)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=187491160]
+[node name="RoomTemplate" type="TileMapLayer" parent="." unique_id=187491160]
+visible = false
 material = SubResource("CanvasItemMaterial_sugp2")
 tile_map_data = PackedByteArray("AAACAAIAAAABAAAAAAADAAIAAAABAAAAAAACAP7/AAAAAAIAAAAAAP7/AAACAAIAAAD///7/AAABAAIAAAD+//7/AAABAAIAAAD9//7/AAABAAIAAAD9/wIAAAABAAAAAAADAP7/AAABAAIAAAAAAAIAAAABAAAAAAD//wIAAAABAAAAAAAEAAEAAAAAAAEAAAAEAAIAAAAGAAIAAAAEAAAAAAAAAAEAAAAEAP//AAAAAAEAAAAEAP7/AAAGAAEAAAD8/wEAAAACAAEAAAD8/wAAAAACAAEAAAD8/wIAAAAFAAIAAAD8////AAACAAEAAAD8//7/AAAFAAEAAAAFAAMAAAAHAAEAAAAFAAIAAAACAAEAAAAFAAEAAAACAAEAAAAFAAAAAAACAAEAAAAFAP//AAACAAEAAAAFAP7/AAACAAEAAAAFAP3/AAAFAAAAAAAEAAMAAAABAAIAAAAEAP3/AAABAAAAAAADAAMAAAABAAIAAAADAP3/AAABAAAAAAACAAMAAAABAAIAAAACAP3/AAAAAAAAAAABAAMAAAABAAIAAAAAAAMAAAABAAIAAAAAAP3/AAAFAAAAAAD//wMAAAABAAIAAAD///3/AAABAAAAAAD+/wMAAAABAAIAAAD+/wIAAAABAAAAAAD+//3/AAABAAAAAAD9/wMAAAABAAIAAAD9//3/AAABAAAAAAD8/wMAAAABAAIAAAD8//3/AAABAAAAAAD7/wMAAAAEAAEAAAD7/wIAAAAAAAEAAAD7/wEAAAAAAAEAAAD7/wAAAAAAAAEAAAD7////AAAAAAEAAAD7//7/AAAAAAEAAAD7//3/AAAEAAIAAAABAAIAAAABAAAAAAD9////AAAKAAAAAAD+////AAAKAAAAAAD/////AAAKAAAAAAAAAP//AAAKAAAAAAABAP//AAAKAAAAAAACAP//AAAKAAAAAAADAP//AAAKAAAAAAADAAAAAAAKAAAAAAADAAEAAAAKAAAAAAACAAEAAAAKAAAAAAABAAEAAAAKAAAAAAAAAAEAAAAKAAAAAAD//wEAAAAKAAAAAAD+/wEAAAAKAAAAAAD+/wAAAAAKAAAAAAD9/wAAAAAKAAAAAAD9/wEAAAAKAAAAAAD//wAAAAAKAAAAAAAAAAAAAAAKAAAAAAABAAAAAAAKAAAAAAACAAAAAAADAAMAAAABAP7/AAAKAAAAAAABAP3/AAAKAAAAAAD7//z/AAADAAAAAAAAAAQAAAAKAAAAAAD//wQAAAAKAAAAAAABAAQAAAAKAAAAAAD+/wQAAAAKAAAAAAD9/wQAAAAKAAAAAAD//wUAAAABAAMAAAAAAAUAAAABAAMAAAABAAUAAAACAAMAAAD+/wUAAAABAAMAAAD7/wQAAAADAAEAAAD7/wUAAAAEAAMAAAD8/wUAAAABAAMAAAD9/wUAAAABAAMAAAD8/wQAAAAKAAAAAAACAAQAAAAKAAAAAAADAAQAAAAKAAAAAAA=")
+enabled = false
 tile_set = SubResource("TileSet_owprq")
+
+[node name="Enemy" parent="." unique_id=1444828512 instance=ExtResource("6_enemy")]
+position = Vector2(-2, 0)

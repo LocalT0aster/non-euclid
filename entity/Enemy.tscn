@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://jflsobmffwwf"]
+
+[ext_resource type="Script" uid="uid://cqslmhygvclrl" path="res://runtime/EnemyGrammar.cs" id="1_ue8pd"]
+[ext_resource type="Script" uid="uid://b4juw4cuqaou3" path="res://entity/Enemy.cs" id="2_enemy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owprq"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1444828512]
+script = ExtResource("2_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=874757308]
+shape = SubResource("CircleShape2D_owprq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1789520164]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0.7529412, 0, 1)
+theme_override_font_sizes/normal_font_size = 6
+theme_override_font_sizes/bold_font_size = 6
+theme_override_font_sizes/bold_italics_font_size = 6
+theme_override_font_sizes/italics_font_size = 6
+theme_override_font_sizes/mono_font_size = 6
+bbcode_enabled = true
+text = "Enemy"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ue8pd")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=995032392]
+path_desired_distance = 4.0
+target_desired_distance = 6.0
+avoidance_enabled = false
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 1.0
+one_shot = true

@@ -1,5 +1,7 @@
 # Procedural Non-Euclidean Dungeon - Algorithm Report
 
+by Danil NEsterov
+
 ## 1. Starting from the idea
 
 The project starts from a simple design goal: generate a dungeon that is navigable as a coherent graph, while allowing the visual arrangement of rooms to be non-Euclidean. A room therefore does not own a permanent global position. Instead, every room has its own local coordinate system and is connected to other rooms through graph edges. When the player crosses a doorway, the next room is projected into the current view. This allows different paths through the dungeon to overlap or contradict each other visually without breaking the logical topology.

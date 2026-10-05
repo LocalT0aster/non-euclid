@@ -35,8 +35,7 @@ shape = SubResource("RectangleShape2D_koprp")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=864260693]
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1487457781]
-position = Vector2(0, 3.8146973e-06)
-scale = Vector2(2.828125, 2.8723145)
+scale = Vector2(3.5740628, 3.6299074)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_koprp")
 height = 32.0
